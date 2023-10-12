@@ -7,7 +7,7 @@
 </div>
 
 <hr>
-
+<%if current_user != nil %>
 <div>
   <div>
     <h2>
@@ -27,6 +27,9 @@
         Add board
       </button>
     </form>
+  <%else%>
+      <p>You must be <a href = "/user/sign_in"> signed in </a></p>
+<%end%>
   </div>
 </div>
 
@@ -40,9 +43,8 @@
       </a>
 
       <div>
-        <%matching_users = User.where({ :id => a_board.user_id})%>
-        <%the_user = matching_users.at(0)%>
-        <%= the_user.email %>
+        <%the_user = User.where({ :id => a_board.user_id}).at(0)%>
+        <%=the_user.email%>
 
       </div>
     </li>
